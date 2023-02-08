@@ -70,5 +70,20 @@ redirectssource, destination및 permanent속성 이 있는 개체를 포함하�
 - permanent: true또는 false- true클라이언트/검색 엔진에 리디렉션을 영원히 캐시하도록 지시하는 308 상태 코드를 사용하는 경우 false일시적이고 캐시되지 않는 307 상태 코드를 사용하는 경우.
 
 
+## getServerSideProps
+페이지에서 (Server-Side Rendering) 라는 함수를 내보내면 getServerSidePropsNext.js는 에서 반환된 데이터를 사용하여 각 요청에서 이 페이지를 미리 렌더링합니다
+
+```javascript
+export async function getServerSideProps(context) {
+  return {
+    props: {}, // will be passed to the page component as props
+  }
+}
+```
+getServerSideProps서버 측에서만 실행되며 브라우저에서는 실행되지 않습니다. 페이지에서 를 사용하는 경우 getServerSideProps:
+
+- 이 페이지를 직접 요청하면 getServerSideProps요청 시 실행되며 이 페이지는 반환된 소품으로 미리 렌더링됩니다.
+- next/link또는 를 통해 클라이언트 측 페이지 전환에서 이 페이지를 요청하면 next/routerNext.js는 서버에 API 요청을 보냅니다.getServerSideProps
+getServerSideProps페이지를 렌더링하는 데 사용할 JSON을 반환합니다. 이 모든 작업은 Next.js에 의해 자동으로 처리되므로 정의한 한 추가 작업을 수행할 필요가 없습니다 getServerSideProps.
 
 
